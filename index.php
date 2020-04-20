@@ -1,3 +1,8 @@
+<?php
+ include 'suspectedcase.php';
+$query = insert_data();
+   					
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -5,7 +10,7 @@
     <?php include 'link/links.php'?>
     <?php include 'css/style.php'?>
   </head>
-  <body>
+  <body onload="myFunction()">
   <nav class="navbar navbar-expand-lg nav_style p-3">
     <a class="navbar-brand pl-5" href="#">COVID-19</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,6 +31,7 @@
         <li class="nav-item">
           <a class="nav-link" href="#preventid">prevention</a>
         </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="#contactid">contact</a>
         </li>
@@ -50,29 +56,23 @@
   </div>
 
    <!--**************************************Corona latest updates************************************-->
-   <section class="corona_updates">
+   <section class="corona_updates container-fluid">
    	<div class="mb-3">
-   		<h3 class="text-center text-uppercase">covid-19 updates</h3>
+   		<h3 class="text-center text-uppercase">covid-19 Live updates Of The World</h3>
    	</div>
 
-   	<div class="d-flex justify-content-around align-items-center">
-   		<div>
-   			<h1  class="count">1,524,266</h1>
-   			<p>Passenger screened at airport</p>
-   		</div>
-   		<div>
-   			<h1  class="count">512</h1>
-   			<p>Active covid-19 cases*</p>
-   		</div>
-   		<div>
-   			<h1  class="count">40</h1>
-   			<p>Cured discharge/cases</p>
-   		</div>
-   		<div>
-   			<h1  class="count">9</h1>
-   			<p>Death cases</p>
-   		</div>
-   </div>
+   	    <div class="table-responsive">
+          <table class="table table-bordered table-striped text-center" id="tbval">
+            <tr>
+              <th>Country</th>
+              <th>TotalConfirmed</th>
+              <th>TotalRecovered</th>
+              <th>TotalDeaths</th>
+              <th>NewRecovered</th>
+              <th>NewDeaths</th>
+            </tr>
+          </table>
+        </div>
 
    </section>
    <!--**************************************About dection************************************-->
@@ -237,60 +237,56 @@
    		<div class="container">
    			<div class="row">
    				<div class="col-lg-8 offset-lg-2 col-12">
-   					<form>
+   					<form method="POST" action="suspectedcase.php">
    					
    					    <div class="form-group ">
    					      <label for="inputEmail4">Name</label>
-   					      <input type="text" class="form-control" name="name" placeholder="text">
+   					      <input type="text" class="form-control" name="name" id="name" placeholder="text">
    					    </div>
    					    <div class="form-group">
    					      <label>Mobile No</label>
-   					      <input type="int" class="form-control" name="mobile" placeholder="Mobile No" required autocomplete="off">
+   					      <input type="int" class="form-control" name="mobile" id="mobile" placeholder="Mobile No" required autocomplete="off">
    					    </div>
    					  
    					  
    					    <div class="form-group">
    					      <label for="inputEmail4">Email</label>
-   					      <input type="email" class="form-control" name="email" placeholder="Email" required autocomplete="off">
+   					      <input type="email" class="form-control" name="email" id="email" placeholder="Email" required autocomplete="off">
    					    </div>
-   					   
    					  
-   					    <div class="form-group">
-   					      <label for="inputCity">City</label>
-   					      <input type="text" class="form-control" id="inputCity">
-   					    </div>
    					    <div class="form-check">
    					    	<label>
    					        Select symptoms
    					      </label><br>
-   					     <div class="custom-control custom-checkbox custom-control-inline text-capitalize"></
+   					     <div class="custom-control custom-checkbox custom-control-inline text-capitalize">
 								<input type="checkbox" class="custom-control-input" id="customcheckbox1" name="coronasym[]" value="Cold">
 								<label class="custom-control-label" for="customcheckbox1">Cold</label>
    					     	</div>
 
-   					     		 <div class="custom-control custom-checkbox custom-control-inline text-capitalize"></
+   					     		 <div class="custom-control custom-checkbox custom-control-inline text-capitalize">
 								<input type="checkbox" class="custom-control-input" id="customcheckbox2" name="coronasym[]" value="fever">
 								<label class="custom-control-label" for="customcheckbox2">Fever</label>
    					     	</div>
 
-   					     		 <div class="custom-control custom-checkbox custom-control-inline text-capitalize"></
+   					     		 <div class="custom-control custom-checkbox custom-control-inline text-capitalize">
 								<input type="checkbox" class="custom-control-input" id="customcheckbox3" name="coronasym[]" value="diffculty in breathe">
 								<label class="custom-control-label" for="customcheckbox3">Diffculty in breathe</label>
    					     	</div>
 
-   					     		 <div class="custom-control custom-checkbox custom-control-inline text-capitalize"></
+   					     		 <div class="custom-control custom-checkbox custom-control-inline text-capitalize">
 								<input type="checkbox" class="custom-control-input" id="customcheckbox4" name="coronasym[]" value="feeling week">
 								<label class="custom-control-label" for="customcheckbox4">Feeling week</label>
    					     	</div>
    					      <div class="form-group">
    					       
-   					        <textarea class="form-control" aria-label="With textarea" rows="3"></textarea>
+   					        <textarea class="form-control" name="msg" id="msg" aria-label="With textarea" rows="3"></textarea>
    					      </div>
 
    					    </div>
    					 
-   					  <button type="submit" class="btn btn-lg bg-success">Sign in</button>
+   					  <button type="submit" name="submit" class="btn btn-lg bg-success">Sign in</button>
    					</form>
+   			
    				</div>
    			</div>
    		</div>
@@ -300,10 +296,67 @@
 		<i class="fa fa-arrow-up" onclick="topfunction()" id="myBtn"></i>
 	</div>
    	<!--**************************************Footer************************************-->
+    
    	<footer class="mt-5">
    		<div class="footer_style text-white text-center container-fluid">
    			<p>Copt right by Sundas Warraich</p>
    		</div>
    	</footer>
+   	<script>
+         $(document).ready(function() {
+        //function myFunction(){
+        $.get( "https://api.covid19api.com/summary", function( data ){
+           console.log(data['Countries'].length);
+           var tbval = document.getElementById('tbval');
+           for(var i=1;i<(data['Countries'].length);i++){
+            var x = tbval.insertRow();
+            x.insertCell(0);
+            tbval.rows[i].cells[0].innerHTML = data['Countries'][i-1]['Country'];
+            tbval.rows[i].cells[0].style.background = '#7a4a91';
+            tbval.rows[i].cells[0].style.color = '#fff';
+
+            x.insertCell(1);
+            tbval.rows[i].cells[1].innerHTML = data['Countries'][i-1]['TotalConfirmed'];
+            tbval.rows[i].cells[1].style.background = '#4bb7d8';
+
+            x.insertCell(2);
+            tbval.rows[i].cells[2].innerHTML = data['Countries'][i-1]['TotalRecovered'];
+            tbval.rows[i].cells[2].style.background = '#f36e23';
+
+             x.insertCell(3);
+            tbval.rows[i].cells[3].innerHTML = data['Countries'][i-1]['TotalDeaths'];
+            tbval.rows[i].cells[3].style.background = '#4bb7d8';
+
+
+             x.insertCell(4);
+            tbval.rows[i].cells[4].innerHTML = data['Countries'][i-1]['NewRecovered'];
+            tbval.rows[i].cells[4].style.background = '#9cc850';
+
+             x.insertCell(5);
+            tbval.rows[i].cells[5].innerHTML = data['Countries'][i-1]['NewDeaths'];
+            tbval.rows[i].cells[5].style.background = '#f36e23';
+           }
+         });
+             
+           
+    //  }
+    });
+
+   		mybutton = document.getElementById("myBtn");
+   		window.onscroll = function(){scrollFunction()};
+   		function scrollFunction(){
+   			if(document.body.scrollTop>100 || document.documentElement.scrollTop>100){
+   				mybutton.style.display = "block";
+				} else {
+					mybutton.style.display = "none";
+				}
+
+   		}
+   		function topfunction(){
+   			document.body.scrollTop = 0;
+   			document.documentElement.scrollTop = 0;
+   		}
+
+   	</script>
   </body>
 </html>

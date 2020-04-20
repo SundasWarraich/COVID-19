@@ -54,4 +54,31 @@
 	.footer_style p{
 	margin: 0;
 	}
+	#myBtn{
+		display: none;
+		position: fixed;
+		bottom: 30px;
+		right: 40px;
+		z-index: 99;
+		border: none;
+		outline: none;background-color:#00A8FF;
+		color: white;
+		cursor: pointer;
+		padding: 10px;
+		border-radius: 10px;
+
+	}
+	#myBtn:hover{
+		background: #606060;
+	}
+	/*//////////////////////////responsive/////////////////////////////*/
+	@media(max-width: 768px){
+		.main_header{height: 700px;text-align: center;}
+		.main_header h1{
+			text-align: center;
+			padding: 0;
+			width: 100%;
+			font-size: 30px;
+		}
+	}
 </style>
